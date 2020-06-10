@@ -2,99 +2,70 @@
 
 This is the starter code for the final assessment project for Udacity's React & Redux course.
 
-The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
+Select users, answer questions, create a new question, see the leader board and do logout.
 
-Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
+## Installation
 
-## Data
+To get started right away:
 
-There are two types of objects stored in our database:
+- clone the repository
+- cd reactnd-project-would-you-rather-starter
+- install all project dependencies with npm install
+- start the development server with npm start
 
-* Users
-* Questions
+### What You're Getting
 
-### Users
-
-Users include:
-
-| Attribute    | Type             | Description           |
-|-----------------|------------------|-------------------         |
-| id                 | String           | The user’s unique identifier |
-| name          | String           | The user’s first name  and last name     |
-| avatarURL  | String           | The path to the image file |
-| questions | Array | A list of ids of the polling questions this user created|
-| answers      | Object         |  The object's keys are the ids of each question this user answered. The value of each key is the answer the user selected. It can be either `'optionOne'` or `'optionTwo'` since each question has two options.
-
-### Questions
-
-Questions include:
-
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| id                  | String | The question’s unique identifier |
-| author        | String | The author’s unique identifier |
-| timestamp | String | The time when the question was created|
-| optionOne | Object | The first voting option|
-| optionTwo | Object | The second voting option|
-
-### Voting Options
-
-Voting options are attached to questions. They include:
-
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| votes             | Array | A list that contains the id of each user who voted for that option|
-| text                | String | The text of the option |
-
-Your code will talk to the database via 4 methods:
-
-* `_getUsers()`
-* `_getQuestions()`
-* `_saveQuestion(question)`
-* `_saveQuestionAnswer(object)`
-
-1) `_getUsers()` Method
-
-*Description*: Get all of the existing users from the database.  
-*Return Value*: Object where the key is the user’s id and the value is the user object.
-
-2) `_getQuestions()` Method
-
-*Description*: Get all of the existing questions from the database.  
-*Return Value*: Object where the key is the question’s id and the value is the question object.
-
-3) `_saveQuestion(question)` Method
-
-*Description*: Save the polling question in the database.  
-*Parameters*:  Object that includes the following properties: `author`, `optionOneText`, and `optionTwoText`. More details about these properties:
-
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| author | String | The id of the user who posted the question|
-| optionOneText| String | The text of the first option |
-| optionTwoText | String | The text of the second option |
-
-*Return Value*:  An object that has the following properties: `id`, `author`, `optionOne`, `optionTwo`, `timestamp`. More details about these properties:
-
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| id | String | The id of the question that was posted|
-| author | String | The id of the user who posted the question|
-| optionOne | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
-| optionTwo | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
-|timestamp|String | The time when the question was created|
-
-4) `_saveQuestionAnswer(object)` Method
-
-*Description*: Save the answer to a particular polling question in the database.
-*Parameters*: Object that contains the following properties: `authedUser`, `qid`, and `answer`. More details about these properties:
-
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| authedUser | String | The id of the user who answered the question|
-| qid | String | The id of the question that was answered|
-| answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
+```bash
+├── CONTRIBUTING.md
+├── README.md - This file.
+├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
+├── public
+│   ├── favicon.ico # React Icon, You may change if you wish.
+│   └── index.html
+└── src
+    ├── App.css # Styles for your app.
+    ├── App.js # This is the root of the app.
+    ├── serviceWorker.js
+    ├── index.css # Global styles.
+    ├── index.js
+    ├── actions # Actions for Redux
+    │   ├── authedUser.js
+    │   ├── questions.js
+    │   ├── shared.js
+    │   ├── users.js
+    ├── Components
+    │   ├── App.js #Principal component
+    │   ├── Graph.js #Grafic of results of questions
+    │   ├── Header.js #Nav and authed user
+    │   ├── Loggin.js #Home before loggin
+    │   ├── NewQuestion.js #Create a new question
+    │   ├── PageNotFound.js #Page 404
+    │   ├── Question.js #Generic viewe for a question
+    │   ├── QuestionOptionsForm.js #Form to create new questions
+    │   ├── QuestionResults.js #Results of the questions
+    │   ├── QuestionList.js #A question into the list
+    │   ├── QuestionLists.js #List of questions
+    │   ├── ResultBox.js #Content results of a question
+    │   ├── UserCardRank.js #Card in the leaders board
+    │   ├── UserControl.js #Logout of a user
+    │   ├── UserOption.js #Mark the answer for the authed user
+    │   └── UsersRank.js #Leaders list
+    ├── Middleware
+    │   ├── index.js
+    │   └── logger.js
+    ├── reducers # Reducers fot Redux
+    │   ├── authedUser.js
+    │   ├── index.js
+    │   ├── questions.js
+    │   └── users.js
+    ├── utils
+    │   ├── _DATA.js #data to initialize the app
+    │   ├── api.js #Apis to connect with DATA
+    │   └── helpers.js #Generic funtions
+    │  
+    └──
+```
 
 ## Contributing
 
-This repository is the starter code for *all* Udacity students. Therefore, we most likely will not accept pull requests. For details, check out [CONTRIBUTING.md](https://github.com/udacity/reactnd-project-would-you-rather-starter/blob/master/CONTRIBUTING.md).
+This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests. For details, check out [CONTRIBUTING.md](https://github.com/udacity/reactnd-project-would-you-rather-starter/blob/master/CONTRIBUTING.md).
